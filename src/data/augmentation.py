@@ -44,7 +44,7 @@ def augment(image, label):
         
         # Rotates the image by 90 degrees a random number of times.
         image = tf.image.rot90(image, k=rotations)
-        logger.debug('Rotation augmentation applied with {} rotations.'.format(rotations.numpy()))
+        logger.info('Rotation augmentation applied with {} rotations.'.format(rotations.numpy()))
 
     # =========================
     # Brightness Adjustment
@@ -52,7 +52,7 @@ def augment(image, label):
     # adjust the image brightness.
     if tf.random.uniform([]) < cfg['brightness_prob']:
         image = tf.image.random_brightness(image, max_delta=cfg['brightness_max_delta'])
-        logger.debug('Brightness augmentation applied.')
+        logger.info('Brightness augmentation applied.')
 
     # =========================
     # Contrast Adjustment
@@ -60,20 +60,29 @@ def augment(image, label):
     if tf.random.uniform([]) < cfg['contrast_prob']:
         # Randomly adjust contrast with a factor between 'contrast_lower' and 'contrast_upper'.
         image = tf.image.random_contrast(image, lower=cfg['contrast_lower'], upper=cfg['contrast_upper'])
-        logger.debug('Contrast augmentation applied.')
+        logger.info('Contrast augmentation applied.')
 
     # =========================
     # Saturation Adjustment
     # =========================
     if tf.random.uniform([]) < cfg['saturation_prob']:
         image = tf.image.random_saturation(image, lower=cfg['saturation_lower'], upper=cfg['saturation_upper'])
-        logger.debug('Saturation augmentation applied.')
+        logger.info('Saturation augmentation applied.')
 
     # =========================
     # Horizontal Flip
     # =========================
     if tf.random.uniform([]) < cfg['flip_prob']:
         image = tf.image.random_flip_left_right(image)
-        logger.debug('Horizontal flip augmentation applied.')
+        logger.info('Horizontal flip augmentation applied.')
 
     return image, label
+
+if __name__ == "__main__":
+    # Example usage
+    image = tf.random.uniform(shape=[230, 230, 3], minval=0, maxval=255, dtype=tf.int32)
+    label = tf.constant([1, 0])
+    augmented_image, augmented_label = augment(image, label)
+    # print the number of original and augmented images
+    print("Original Image Shape:", image.shape)
+    print("Original Label Shape:", label.shape)
