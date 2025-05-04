@@ -175,3 +175,4 @@ cython_debug/
 poetry.lock
 logs/
 Data/test
+figures/eda/
