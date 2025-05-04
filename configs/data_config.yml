@@ -1,0 +1,10 @@
+data_dir: "data/raw/"
+img_height: 224
+img_width: 224
+batch_size: 16
+validation_split: 0.2
+test_split: 0.1
+augmentation:
+  enable: true
+  rotation_prob: 0.5
+  flip_prob: 0.5

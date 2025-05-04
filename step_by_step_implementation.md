@@ -43,4 +43,12 @@ poetry update
 
 # Export requirements.txt (if needed)
 poetry export -f requirements.txt --output requirements.txt
-``` 
+```
+
+# Step 2: Configuration Management
+
+## Creating Configuration Files
+
+Configuration files help separate code from parameters, making the project more maintainable and flexible.
+
+1. Create a `configs` directory for YAML configuration files including data_config and model_config
