@@ -77,3 +77,14 @@ The augmentation module performs a series of random transformations:
 Configuration for these augmentations is managed through a YAML file (`configs/data_config.yaml`), which allows easy modification of probabilities and intensity of each augmentation.
 
 These steps ensure that the model is exposed to a variety of image conditions during training, thereby enhancing its generalization capabilities.
+
+# Step 5: Data Preprocessing Implementation
+
+The preprocessing module (located at `src/data/preprocessing.py`) handles image loading and preprocessing tasks. Key functionalities include:
+
+- **Preprocessor Class**:  
+  This class encapsulates the image preprocessing pipeline. Its main methods are:
+  - `load_image(file_path)`: Loads an image using OpenCV, and logs an error if the image cannot be loaded.
+  - `resize_image(image)`: Resizes the image to target dimensions specified during initialization (default or from config).
+  - `normalize_image(image)`: Normalizes image pixel values to the range [0, 1].
+  - `preprocess_image(file_path)`: A helper that combines the above steps to load, resize, and normalize an image.
