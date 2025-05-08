@@ -1,18 +1,57 @@
+#--------------------------------------------
+# Data paths and structure
+#--------------------------------------------
 data_dir: "data/raw/"
+
+# Class mapping
+new_class_structure:
+  Non Demented: CN
+  Mild Dementia: LMCI
+  Moderate Dementia: AD
+  Very Mild Dementia: EMCI
+
+# Class descriptions
+class_descriptions:
+  AD: "Alzheimer's Disease"
+  CN: "Cognitive Normal"
+  EMCI: "Early Mild Cognitive Impairment"
+  LMCI: "Late Mild Cognitive Impairment"
+
+#--------------------------------------------
+# Image processing
+#--------------------------------------------
 img_height: 224
 img_width: 224
-batch_size: 16
+
+#--------------------------------------------
+# Dataset splits
+#--------------------------------------------
 validation_split: 0.2
 test_split: 0.1
+
+#--------------------------------------------
+# Data augmentation
+#--------------------------------------------
 augmentation:
   enable: true
+  # Rotation
   rotation_prob: 0.5
+  
+  # Brightness
   brightness_prob: 0.5
   brightness_max_delta: 0.2
+  
+  # Contrast
   contrast_prob: 0.5
   contrast_lower: 0.5
   contrast_upper: 1.5
+  
+  # Saturation
   saturation_prob: 0.5
   saturation_lower: 0.5
   saturation_upper: 1.5
+  
+  # Flipping
   flip_prob: 0.5
+
+# Note: batch_size moved to train_config.yaml

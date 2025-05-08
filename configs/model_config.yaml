@@ -1,9 +1,24 @@
+#--------------------------------------------
+# Model architecture
+#--------------------------------------------
+# Input specifications
 input_shape: [224, 224, 1]
 num_classes: 4
+
+# Base model settings
 backbone: "DenseNet169"   # Options: DenseNet169 or DenseNet201
 freeze_base: true
+
+# Model configuration
 dropout_rate: 0.3
-learning_rate: 1e-4
-fine_tune_lr: 1e-5
+
+#--------------------------------------------
+# Training phases
+#--------------------------------------------
+# Training only the top layers (base is frozen)
 epochs_head: 10
+
+# Fine-tuning the entire model
 epochs_fine: 20
+
+# Note: Learning rate settings moved to train_config.yaml

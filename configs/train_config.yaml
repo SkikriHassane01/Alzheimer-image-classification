@@ -1,0 +1,35 @@
+#--------------------------------------------
+# Training hyperparameters
+#--------------------------------------------
+# Learning rate settings
+learning_rate: 1e-4
+fine_tune_lr: 1e-5
+
+# Training iterations
+epochs: 25
+batch_size: 16
+
+#--------------------------------------------
+# Callback configurations
+#--------------------------------------------
+# Early stopping
+early_stop_patience: 8
+
+# Learning rate reduction
+reduce_lr_patience: 4
+reduce_lr_factor: 0.2
+min_lr: 1e-7
+
+#--------------------------------------------
+# Model checkpointing
+#--------------------------------------------
+save_best_only: true
+save_weights_only: false
+
+# Checkpoint paths (prioritized order)
+checkpoint_paths: [
+  "models/checkpoints/densenet201_fine_tuning_best.keras",
+  "models/checkpoints/densenet169_fine_tuning_best.keras",
+  "models/checkpoints/densenet201_initial_best.keras",
+  "models/checkpoints/densenet169_initial_best.keras"
+]
