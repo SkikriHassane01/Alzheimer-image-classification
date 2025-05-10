@@ -176,3 +176,4 @@ poetry.lock
 logs/
 Data/test
 figures/eda/
+Data/processed/augmented/

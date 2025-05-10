@@ -69,35 +69,35 @@ def load_dataset(dataset_dir, new_class_structure, class_descriptions):
         df['original_class_description'] = df['original_label'].map(class_descriptions)
         return df
 
-if __name__ == "__main__":
-    try:
-        config = load_yaml_config("configs/data_config.yaml")
-        dataset_dir = config.get("dataset_dir", "Data/raw")
-        new_class_structure = config.get("new_class_structure",)
-        class_descriptions = config.get("class_descriptions")
-        logger.info("Configuration loaded successfully.")
-    except Exception as e:
-        logger.error(f"Failed to load configuration: {e}")
-        dataset_dir = "Data/raw"
-        new_class_structure = {
-            "Non Demented": "CN",
-            "Mild Dementia": "LMCI",
-            "Moderate Dementia": "AD",
-            "Very Mild Dementia": "EMCI"
-        }
-        class_descriptions = {
-            "AD": "Alzheimer's Disease",
-            "CN": "Cognitive Normal",
-            "EMCI": "Early Mild Cognitive Impairment",
-            "LMCI": "Late Mild Cognitive Impairment"
-        }
-    df = load_dataset(dataset_dir, new_class_structure, class_descriptions)
-    if not df.empty:
-        logger.info(f"DataFrame head:\n{df.head()}")
-        # Save the dataframe into a CSV file
-        os.makedirs("Data/processed", exist_ok=True)
-        csv_path = os.path.join("Data/processed", "dataset.csv")
-        df.to_csv(csv_path, index=False)
-        logger.info(f"DataFrame saved to {csv_path}")
-    else:
-        logger.error("No images loaded; please verify your dataset structure.")
+# if __name__ == "__main__":
+#     try:
+#         config = load_yaml_config("configs/data_config.yaml")
+#         dataset_dir = config.get("dataset_dir", "Data/raw")
+#         new_class_structure = config.get("new_class_structure",)
+#         class_descriptions = config.get("class_descriptions")
+#         logger.info("Configuration loaded successfully.")
+#     except Exception as e:
+#         logger.error(f"Failed to load configuration: {e}")
+#         dataset_dir = "Data/raw"
+#         new_class_structure = {
+#             "Non Demented": "CN",
+#             "Mild Dementia": "LMCI",
+#             "Moderate Dementia": "AD",
+#             "Very mild Dementia": "EMCI"
+#         }
+#         class_descriptions = {
+#             "AD": "Alzheimer's Disease",
+#             "CN": "Cognitive Normal",
+#             "EMCI": "Early Mild Cognitive Impairment",
+#             "LMCI": "Late Mild Cognitive Impairment"
+#         }
+#     df = load_dataset(dataset_dir, new_class_structure, class_descriptions)
+#     if not df.empty:
+#         logger.info(f"DataFrame head:\n{df.head()}")
+#         # Save the dataframe into a CSV file
+#         os.makedirs("Data/processed", exist_ok=True)
+#         csv_path = os.path.join("Data/processed", "dataset.csv")
+#         df.to_csv(csv_path, index=False)
+#         logger.info(f"DataFrame saved to {csv_path}")
+#     else:
+#         logger.error("No images loaded; please verify your dataset structure.")

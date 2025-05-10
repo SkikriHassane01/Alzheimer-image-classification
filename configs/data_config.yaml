@@ -8,7 +8,7 @@ new_class_structure:
   Non Demented: CN
   Mild Dementia: LMCI
   Moderate Dementia: AD
-  Very Mild Dementia: EMCI
+  Very mild Dementia: EMCI
 
 # Class descriptions
 class_descriptions:

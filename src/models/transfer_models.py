@@ -72,3 +72,40 @@ def build_densenet169_model(input_shape=(224, 224, 3), num_classes=10):
     outputs = Dense(num_classes, activation='softmax')(x)
     model = Model(inputs=inputs, outputs=outputs)
     return model
+
+def build_resnet50_model(input_shape=(224, 224, 3), num_classes=4):
+    """
+    Build and return a ResNet50 model with the given input shape and number of classes.
+    
+    Args:
+        input_shape: Tuple of integers defining the input shape (height, width, channels)
+        num_classes: Number of output classes
+        
+    Returns:
+        A compiled Keras model
+    """
+    from tensorflow.keras.applications import ResNet50
+    from tensorflow.keras.layers import Dense, GlobalAveragePooling2D, Dropout
+    from tensorflow.keras.models import Model
+    
+    # Create the base pre-trained model
+    base_model = ResNet50(weights='imagenet', include_top=False, input_shape=input_shape)
+    
+    # Add custom layers
+    x = base_model.output
+    x = GlobalAveragePooling2D()(x)
+    x = Dense(512, activation='relu')(x)
+    x = Dropout(0.5)(x)
+    predictions = Dense(num_classes, activation='softmax')(x)
+    
+    # Create the final model
+    model = Model(inputs=base_model.input, outputs=predictions)
+    
+    # Compile the model
+    model.compile(
+        optimizer='adam',
+        loss='categorical_crossentropy',
+        metrics=['accuracy']
+    )
+    
+    return model

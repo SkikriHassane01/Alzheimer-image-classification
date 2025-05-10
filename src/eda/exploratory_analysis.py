@@ -3,7 +3,7 @@ import random
 from PIL import Image
 import matplotlib.pyplot as plt
 from src.utils.logger import get_logger
-logger = get_logger("4_exploratory_analysis")
+logger = get_logger("3_exploratory_analysis")
 
 def plot_class_distribution(data_dir: str) -> None:
     """
