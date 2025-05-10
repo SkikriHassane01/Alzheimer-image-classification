@@ -1,0 +1,6 @@
+Alzheimer's Disease Classification Results
+Date: 2025-05-10 13:29:11
+Model: DenseNet169
+Test Accuracy: 0.9194
+Test Loss: 0.2039
+Matthews Correlation Coefficient: 0.8930

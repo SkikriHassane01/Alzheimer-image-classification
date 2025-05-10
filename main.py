@@ -243,7 +243,9 @@ def main(args):
         f.write(f"Test Loss: {test_loss:.4f}\n")
         f.write(f"Matthews Correlation Coefficient: {metrics['mcc']:.4f}\n\n")
         f.write("Classification Report:\n")
-        f.write(metrics['classification_report'])
+        # convert the dict to a table-like string before writing
+        report_df = pd.DataFrame(metrics['classification_report']).transpose()
+        f.write(report_df.to_string())
     
     logger.info(f"Results summary saved to: {summary_path}")
     logger.info("\nPipeline completed successfully!")
